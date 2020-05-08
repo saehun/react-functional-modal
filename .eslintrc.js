@@ -5,6 +5,7 @@ module.exports = {
   },
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended"
   ],
@@ -14,10 +15,14 @@ module.exports = {
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "plugins": [
+    "react",
     "@typescript-eslint"
   ],
   "rules": {
@@ -28,6 +33,8 @@ module.exports = {
     // There needs to declare underscore variables which is not used but only be destructured.
     "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     // disable rules below
+    "react/prop-types": 0,
+    "react/display-name": 0,
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/no-unused-vars": 0, // duplicated with typescript compiler
     "@typescript-eslint/no-var-requires": 0, // allow require
@@ -35,5 +42,10 @@ module.exports = {
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-use-before-define": 0, // TODO. consider apply this rule
     "@typescript-eslint/explicit-function-return-type": 0,
-  }
+  },
+  settings: {
+    "react": {
+      "version": "detect",
+    },
+  },
 };

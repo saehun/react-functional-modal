@@ -1,1 +1,1 @@
-console.log("hmm");
+export { show, hide } from "./Modal";
