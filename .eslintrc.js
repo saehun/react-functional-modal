@@ -33,6 +33,7 @@ module.exports = {
     // There needs to declare underscore variables which is not used but only be destructured.
     "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     // disable rules below
+    "no-cond-assign": 0,
     "react/prop-types": 0,
     "react/display-name": 0,
     "@typescript-eslint/camelcase": 0,

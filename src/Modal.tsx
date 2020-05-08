@@ -6,9 +6,15 @@ const idPrefix = String(Number(new Date())).slice(7); // prevent id of element f
 /* const isBrowser = typeof window === "object"; */
 
 // initialize global object.
-const [root, instances] = ((): [HTMLElement, Record<string, { instance: React.ReactNode; el: HTMLElement }>] => {
+interface InstanceItem {
+  key: string;
+  instance: React.ReactNode;
+  el: HTMLElement;
+}
+
+const [root, instances] = ((): [HTMLElement, InstanceItem[]] => {
   const el = document.createElement("div");
-  const instances: Record<string, { instance: React.ReactNode; el: HTMLElement }> = {};
+  const instances: any = [];
   el.setAttribute("id", `modal-root-${idPrefix}`);
   document.body.appendChild(el);
 
@@ -36,8 +42,9 @@ class Instance extends React.Component<any> {
 
 const getInstance = (callback: any, key: string) => {
 
-  if (key in instances) {
-    callback(instances[key].instance);
+  let i;
+  if (i = instances.find(x => x.key === key)) {
+    callback(i.instance);
     return;
   }
 
@@ -47,7 +54,7 @@ const getInstance = (callback: any, key: string) => {
   const ref = (instance: any) => {
     if (!instance) return;
     callback(instance);
-    instances[key] = { instance, el };
+    instances.push({ key, instance, el });
     return instance;
   };
 
@@ -65,17 +72,21 @@ export const show = (children: React.ReactNode, option?: Option) => {
 };
 
 export const hide = (key?: string) => {
-  const _key = typeof key === "string" ? key : Object.keys(instances).reverse()[0];
-  if (_key === undefined) {
-    return;
+  console.log(instances);
+  let i;
+  if (typeof key === "string") {
+    if (i = instances.find(x => x.key === key)) {
+      const { el } = i;
+      ReactDOM.unmountComponentAtNode(el);
+      root.removeChild(el);
+      instances.splice(instances.indexOf(i), 1);
+      return;
+    }
+  } else {
+    if (i = instances.pop()) {
+      const { el } = i;
+      ReactDOM.unmountComponentAtNode(el);
+      root.removeChild(el);
+    }
   }
-
-  if (_key in instances) {
-    const { el } = instances[_key];
-    ReactDOM.unmountComponentAtNode(el);
-    root.removeChild(el);
-    delete instances[_key];
-    return;
-  }
-
 };
