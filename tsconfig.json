@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "outDir": "dist",
+    "declaration": true,
+    "jsx": "preserve",
+    "lib": [ "dom", "esnext" ]
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

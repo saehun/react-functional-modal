@@ -1,0 +1,11 @@
+# Dependency directory
+node_modules
+
+# Ignore coverage
+coverage/**/*
+
+# Ignore built ts files
+dist/**/*
+
+# Ignore Desktop Service Store
+.DS_Store
