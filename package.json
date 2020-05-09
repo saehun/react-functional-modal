@@ -14,11 +14,18 @@
   },
   "dependencies": {
     "@types/react-dom": "^16.9.7",
+    "@types/styled-components": "^5.1.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8",
+    "styled-components": ">=5.1.0"
   },
   "files": [
     "dist",
