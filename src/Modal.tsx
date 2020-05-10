@@ -33,7 +33,7 @@ interface Option {
   key?: string;
   fading?: boolean;
   style?: React.CSSProperties;
-  onClose?: () => void;
+  onClose?: (...args: any[]) => void;
   clickOutsideToClose?: boolean;
 }
 
@@ -54,10 +54,11 @@ const Container = styled.div<{ show: boolean; fading: boolean }>`
 
 class Instance extends React.Component {
 
-  state: { children: React.ReactNode; option: Option; show: boolean } = {
+  state: { children: React.ReactNode; option: Option; show: boolean; returnValue: any[] } = {
     children: null,
     option: {},
     show: true,
+    returnValue: [],
   }
 
   show(children: React.ReactNode, option: Option) {
@@ -66,12 +67,6 @@ class Instance extends React.Component {
 
   hide() {
     this.setState({ show: false });
-  }
-
-  componentWillUnmount() {
-    if (this.state.option?.onClose) {
-      this.state.option.onClose();
-    }
   }
 
   handleClickOutside = (e: React.MouseEvent) => {
@@ -146,18 +141,21 @@ const hideAndRemove = (i: InstanceItem) => {
   }
 };
 
-export const hide = (key?: string) => {
+export const hide = (key?: string, ...args: any[]) => {
   let i;
   if (typeof key === "string") {
     if (i = instances.find(x => x.key === key)) {
       hideAndRemove(i);
       instances.splice(instances.indexOf(i), 1);
-      return;
     }
   } else {
     if (i = instances.pop()) {
       const { el } = i;
       hideAndRemove(i);
     }
+  }
+  if (i.option.onClose) {
+    // Call onClose callback
+    i.option.onClose(...args);
   }
 };
