@@ -188,6 +188,16 @@ All properties follow are optional.
 | fading | `boolean` | enable fadeIn and fadeOut (default `false`) |
 | clickOutsideToClose | `boolean` | click overlay to close modal (default `false`) |
 
+## Default overlay styles
+``` css
+display: flex;
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+justify-content: center;
+align-items: center;
+background: rgba(255,255,255,0);
+```
+
 
 ## How it works
 
