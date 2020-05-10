@@ -99,8 +99,8 @@ const getInstance = (callback: any, _option?: Option) => {
   const option: Option = {
     key: String(counter++),
     onClose: () => { },
-    fading: true,
-    clickOutsideToClose: true,
+    fading: false,
+    clickOutsideToClose: false,
     ..._option,
   };
 
