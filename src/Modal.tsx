@@ -22,9 +22,6 @@ const fadeOut = keyframes`
   }
 `;
 
-
-
-// initialize global object.
 interface InstanceItem {
   key: string;
   instance: React.ReactNode;
@@ -35,11 +32,7 @@ interface InstanceItem {
 interface Option {
   key?: string;
   fading?: boolean;
-  styles?: {
-    justifyContent?: string;
-    alignItems?: string;
-    background?: string;
-  };
+  style?: React.CSSProperties;
   onClose?: () => void;
   clickOutsideToClose?: boolean;
 }
@@ -49,7 +42,7 @@ const fading = css<{ show: boolean }>`
   animation-fill-mode: forwards;
 `;
 
-const Container = styled.div<{ show: boolean, fading: boolean }>`
+const Container = styled.div<{ show: boolean; fading: boolean }>`
   display: flex;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -61,7 +54,7 @@ const Container = styled.div<{ show: boolean, fading: boolean }>`
 
 class Instance extends React.Component {
 
-  state: { children: React.ReactNode; option: Option; show: boolean; } = {
+  state: { children: React.ReactNode; option: Option; show: boolean } = {
     children: null,
     option: {},
     show: true,
@@ -94,7 +87,7 @@ class Instance extends React.Component {
       show={this.state.show}
       fading={!!this.state.option.fading}
       onClick={this.handleClickOutside}
-      style={this.state.option?.styles}>
+      style={this.state.option?.style}>
       {this.state.children}
     </Container>;
   }
