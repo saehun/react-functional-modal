@@ -43,6 +43,7 @@ var Instance = /** @class */ (function (_super) {
             children: null,
             option: {},
             show: true,
+            returnValue: [],
         };
         _this.handleClickOutside = function (e) {
             e.preventDefault();
@@ -59,20 +60,14 @@ var Instance = /** @class */ (function (_super) {
     Instance.prototype.hide = function () {
         this.setState({ show: false });
     };
-    Instance.prototype.componentWillUnmount = function () {
-        var _a;
-        if ((_a = this.state.option) === null || _a === void 0 ? void 0 : _a.onClose) {
-            this.state.option.onClose();
-        }
-    };
     Instance.prototype.render = function () {
         var _a;
-        return React.createElement(Container, { show: this.state.show, fading: !!this.state.option.fading, onClick: this.handleClickOutside, style: (_a = this.state.option) === null || _a === void 0 ? void 0 : _a.styles }, this.state.children);
+        return React.createElement(Container, { show: this.state.show, fading: !!this.state.option.fading, onClick: this.handleClickOutside, style: (_a = this.state.option) === null || _a === void 0 ? void 0 : _a.style }, this.state.children);
     };
     return Instance;
 }(React.Component));
 var getInstance = function (callback, _option) {
-    var option = __assign({ key: String(counter++), onClose: function () { }, fading: true, clickOutsideToClose: true }, _option);
+    var option = __assign({ key: String(counter++), onClose: function () { }, fading: false, clickOutsideToClose: false }, _option);
     var i;
     var key = option.key;
     if (i = instances.find(function (x) { return x.key === key; })) {
@@ -112,12 +107,16 @@ var hideAndRemove = function (i) {
     }
 };
 export var hide = function (key) {
+    var _a;
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
     var i;
     if (typeof key === "string") {
         if (i = instances.find(function (x) { return x.key === key; })) {
             hideAndRemove(i);
             instances.splice(instances.indexOf(i), 1);
-            return;
         }
     }
     else {
@@ -125,6 +124,10 @@ export var hide = function (key) {
             var el = i.el;
             hideAndRemove(i);
         }
+    }
+    if (i.option.onClose) {
+        // Call onClose callback
+        (_a = i.option).onClose.apply(_a, args);
     }
 };
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
