@@ -21,9 +21,10 @@
 <br />
 
 - **Simple**: Only have 2 API. show and hide.
-- **Functional**: State is managed inside the library. Just call the function.
+- **Functional**: Let library manages the state. Just call the function.
 - **Flexible**: No restriction for how the modal to be shaped.
 - **Typed**: Built with typescript.
+- **Small**: 160 lines, ~1.8Kb gzipped.
 
 ## Install
 
@@ -65,10 +66,10 @@ All properties follow are optional.
 | onClose | `function` | callback when `hide` function called |
 | style | `object` | CSS properties object which will overrides the modal's overlay |
 | fading | `boolean` | enable fadeIn and fadeOut (default `false`) |
-| clickOutsideToClose | `boolean` | click overlay to close modal (default `false`) |
+| clickOutsideToClose | `boolean` | click overlay to close the modal (default `false`) |
 
 ## Default overlay styles
-``` css
+```
 display: flex;
 position: fixed;
 top: 0; left: 0; right: 0; bottom: 0;
