@@ -1,26 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import styled, { keyframes, css } from "styled-components";
+import { injectStyle } from "./injectStyle";
 
 let counter = 0;
 const instances: InstanceItem[] = [];
-const fadeIn = keyframes`
-   from {
-     opacity: 0;
-   }
-   to {
-     opacity: 1.0;
-   }
-`;
-
-const fadeOut = keyframes`
-  from {
-    opacity: 1.0;
-  }
-  to {
-    opacity: 0;
-  }
-`;
 
 interface InstanceItem {
   key: string;
@@ -36,21 +19,6 @@ interface Option {
   onClose?: (...args: any[]) => void;
   clickOutsideToClose?: boolean;
 }
-
-const fading = css<{ show: boolean }>`
-  animation: ${props => props.show ? fadeIn : fadeOut} 0.2s ease-out;
-  animation-fill-mode: forwards;
-`;
-
-const Container = styled.div<{ show: boolean; fading: boolean }>`
-  display: flex;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255,255,255,0);
-  ${props => props.fading ? fading : ""}
-`;
 
 class Instance extends React.Component {
 
@@ -78,13 +46,11 @@ class Instance extends React.Component {
   }
 
   render() {
-    return <Container
-      show={this.state.show}
-      fading={!!this.state.option.fading}
+    return <div className={`rfm-overlay ${this.state.option?.fading ? (this.state.show ? "show" : "hide") : ""}`}
       onClick={this.handleClickOutside}
       style={this.state.option?.style}>
       {this.state.children}
-    </Container>;
+    </div>;
   }
 }
 
@@ -120,6 +86,7 @@ const getInstance = (callback: any, _option?: Option) => {
 };
 
 export const show = (children: React.ReactNode, option?: Option) => {
+  injectStyle();
   getInstance((instance: any, o: Option) => {
     instance.show(children, o);
   }, option);

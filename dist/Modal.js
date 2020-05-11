@@ -1,7 +1,3 @@
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -28,13 +24,9 @@ var __assign = (this && this.__assign) || function () {
 };
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import styled, { keyframes, css } from "styled-components";
+import { injectStyle } from "./injectStyle";
 var counter = 0;
 var instances = [];
-var fadeIn = keyframes(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n   from {\n     opacity: 0;\n   }\n   to {\n     opacity: 1.0;\n   }\n"], ["\n   from {\n     opacity: 0;\n   }\n   to {\n     opacity: 1.0;\n   }\n"])));
-var fadeOut = keyframes(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  from {\n    opacity: 1.0;\n  }\n  to {\n    opacity: 0;\n  }\n"], ["\n  from {\n    opacity: 1.0;\n  }\n  to {\n    opacity: 0;\n  }\n"])));
-var fading = css(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  animation: ", " 0.2s ease-out;\n  animation-fill-mode: forwards;\n"], ["\n  animation: ", " 0.2s ease-out;\n  animation-fill-mode: forwards;\n"])), function (props) { return props.show ? fadeIn : fadeOut; });
-var Container = styled.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  display: flex;\n  position: fixed;\n  top: 0; left: 0; right: 0; bottom: 0;\n  justify-content: center;\n  align-items: center;\n  background: rgba(255,255,255,0);\n  ", "\n"], ["\n  display: flex;\n  position: fixed;\n  top: 0; left: 0; right: 0; bottom: 0;\n  justify-content: center;\n  align-items: center;\n  background: rgba(255,255,255,0);\n  ", "\n"])), function (props) { return props.fading ? fading : ""; });
 var Instance = /** @class */ (function (_super) {
     __extends(Instance, _super);
     function Instance() {
@@ -61,8 +53,8 @@ var Instance = /** @class */ (function (_super) {
         this.setState({ show: false });
     };
     Instance.prototype.render = function () {
-        var _a;
-        return React.createElement(Container, { show: this.state.show, fading: !!this.state.option.fading, onClick: this.handleClickOutside, style: (_a = this.state.option) === null || _a === void 0 ? void 0 : _a.style }, this.state.children);
+        var _a, _b;
+        return React.createElement("div", { className: "rfm-overlay " + (((_a = this.state.option) === null || _a === void 0 ? void 0 : _a.fading) ? (this.state.show ? "show" : "hide") : ""), onClick: this.handleClickOutside, style: (_b = this.state.option) === null || _b === void 0 ? void 0 : _b.style }, this.state.children);
     };
     return Instance;
 }(React.Component));
@@ -86,6 +78,7 @@ var getInstance = function (callback, _option) {
     ReactDOM.render(React.createElement(Instance, { ref: ref }), el);
 };
 export var show = function (children, option) {
+    injectStyle();
     getInstance(function (instance, o) {
         instance.show(children, o);
     }, option);
@@ -130,4 +123,3 @@ export var hide = function (key) {
         (_a = i.option).onClose.apply(_a, args);
     }
 };
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
