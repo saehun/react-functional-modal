@@ -10,15 +10,14 @@ const styles = `
   background: rgba(255,255,255,0);
 }
 
-
 .rfm-overlay.show {
-  -webkit-animation: 0.2s ease-out forward rfm-fadein;
-          animation: 0.2s ease-out forward rfm-fadein;
+  -webkit-animation: 0.2s ease-out forwards rfm-fadein;
+          animation: 0.2s ease-out forwards rfm-fadein;
 }
 
 .rfm-overlay.hide {
-  -webkit-animation: 0.2s ease-out forward rfm-fadeout;
-          animation: 0.2s ease-out forward rfm-fadeout;
+  -webkit-animation: 0.2s ease-out forwards rfm-fadeout;
+          animation: 0.2s ease-out forwards rfm-fadeout;
 }
 
 @-webkit-keyframes rfm-fadein  { from { opacity: 0; } to { opacity: 1.0; }  }
