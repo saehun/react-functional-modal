@@ -24,7 +24,7 @@
 - **Functional**: Let library manages the state. Just call the function.
 - **Flexible**: No restriction for how the modal to be shaped.
 - **Typed**: Built with typescript.
-- **Small**: 160 lines, ~1.8Kb gzipped.
+- **Small**: 160 lines, ~1.8Kb gzipped. no deps.
 
 ## Install
 

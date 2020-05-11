@@ -87,7 +87,6 @@ var hideAndRemove = function (i) {
     var el = i.el, option = i.option;
     var instance = i.instance;
     if (option.fading) {
-        console.log("fading1");
         instance.hide();
         setTimeout(function () {
             ReactDOM.unmountComponentAtNode(el);
@@ -114,7 +113,6 @@ export var hide = function (key) {
     }
     else {
         if (i = instances.pop()) {
-            var el = i.el;
             hideAndRemove(i);
         }
     }
