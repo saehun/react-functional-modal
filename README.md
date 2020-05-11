@@ -42,17 +42,19 @@ TBD
 
 ## API
 ### show(ReactNode, Option)
-`ReactNode`:
+`ReactNode`: <br>
 Evaluated react component. e.g. `<div>...</div>`, `<SomeComponent />`, `<>...</>`
 
-`Option` (optional):
-See [Option](https://github.com/minidonut/react-functional-modal#option)
-return: `void`
+`Option` (optional): <br>
+See [Option](https://github.com/minidonut/react-functional-modal#option) <br>
+
+**return**: `void`
 
 ### hide(string)
-`string` (optional):
-Key of the modal to hide. if not provided, hide modals in order from recent to old.
-return: `void`<br>
+`string` (optional): <br>
+Key of the modal to hide. if not provided, hide modals in order from recent to old. <br>
+
+**return**: `void`
 
 
 ## `Option`
@@ -83,11 +85,7 @@ TBD
 TBD
 
 
-
-## Typescript
-This package is written in typescript, generating output type from schema is not supported yet (work in progress).
-
-### Example
+## Advanced
 
 
 ## License
