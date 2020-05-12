@@ -1,9 +1,15 @@
 {
   "name": "react-functional-modal",
-  "version": "1.0.8",
+  "version": "1.0.9",
+  "description": "FP friendly react modal component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "repository": "minidonut/react-functional-modal",
+  "author": {
+    "name": "Karl Saehun Chung",
+    "email": "saehun.dev@gmail.com"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext .js,.ts"
@@ -29,5 +35,11 @@
   "files": [
     "dist",
     "README.md"
+  ],
+  "keywords": [
+    "react",
+    "component",
+    "modal",
+    "functional"
   ]
 }

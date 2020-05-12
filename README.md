@@ -350,8 +350,8 @@ background: rgba(255,255,255,0);
 Every React element must be mounted somewhere in vdom tree. No react component can be rendered outside of the flow. In this point of view, package `react-functional-modal` have no sense. because it doesn't be mounted but called with argument.
 
 Where is the React element given as first argument of `show` function mounted?<br>
-The answer is **another tree**:
-<img src="https://github.com/minidonut/react-functional-modal/raw/master/docs/step.gif" alt="how it works" width="621" height="405" />
+The answer is **another tree**:<br>
+<img src="https://github.com/minidonut/react-functional-modal/raw/master/docs/how-it-works.png" alt="how it works" width="621" height="405" />
 
 As the function `show` called, it create HTML `div` element and append it as a child of document's body. New `ReactDOM.render` API called with the  HTML `div` element as a container, given react element wrapped by overlay as a root.
 
