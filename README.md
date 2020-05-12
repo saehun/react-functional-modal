@@ -60,7 +60,7 @@ hide(); // hide ModalOne
 hide(); // do nothing
 ```
 
-If you specified the key, you can close it:
+If you specified the key, you can explicitly close it:
 ``` jsx
 show(<Modal />, { key: "1234" });
 hide("1234");
@@ -347,10 +347,54 @@ background: rgba(255,255,255,0);
 
 
 ## How it works
-TBD
+Every React element must be mounted somewhere in vdom tree. No react component can be rendered outside of the flow. In this point of view, package `react-functional-modal` have no sense. because it doesn't be mounted but called with argument.
+
+Where is the React element given as first argument of `show` function mounted?<br>
+The answer is **another tree**:
+<img src="https://github.com/minidonut/react-functional-modal/raw/master/docs/step.gif" alt="how it works" width="621" height="405" />
+
+As the function `show` called, it create HTML `div` element and append it as a child of document's body. New `ReactDOM.render` API called with the  HTML `div` element as a container, given react element wrapped by overlay as a root.
+
+When the function `hide` called, `ReactDOM.unmountComponentAtNode` and `document.body.removeChild` API detroy and clear the modal.
 
 ## Restriction
-TBD
+As our modal rendered in separated context, it has no access to context object such as `ReduxStore`, `React-Router Context`, `ThemeContext`.
+
+### Solution
+1. Wrap modal with context providers:
+``` jsx
+import { Provider, useStore } from "react-redux";
+...
+// somewhere in react component
+...
+  const store = useStore();
+  const openModal = useCallback(() => {
+    show(
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <Modal />
+        </Provider>
+      </ThemeProvider>
+    );
+  }, [store, theme]);
+...
+```
+
+2. Pass functions directly
+``` jsx
+...
+// somewhere in react component
+...
+  const updateSomething = useCallback((value) => {
+    dispatch(actions.updateSomething(value));
+  }, [dispatch]);
+
+  const openModal = useCallback(() => {
+    show(<Modal handler={updateSomething} />);
+  }, [updateSomething]);
+...
+```
+
 
 ## License
 MIT
