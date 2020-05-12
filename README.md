@@ -123,6 +123,7 @@ const value = await getValue();
 
 ### Message
 
+![message](https://github.com/minidonut/react-functional-modal/raw/master/docs/message.gif)
 ``` jsx
 const Message = ({ duration, title }) => {
   const [remain, setRemain] = React.useState(duration / 1000);
@@ -162,6 +163,9 @@ Have a nice weekend.`,
 
 ### Confirm
 
+
+![confirm](https://github.com/minidonut/react-functional-modal/raw/master/docs/confirm.gif)
+
 ``` jsx
 const confirm = () => new Promise((resolve) => {
   show(<div style={wrapperStyle}>
@@ -188,6 +192,9 @@ const confirm = () => new Promise((resolve) => {
 ```
 
 ### Select
+
+
+![select](https://github.com/minidonut/react-functional-modal/raw/master/docs/select.gif)
 
 ``` jsx
 const select = (title, options) => new Promise((resolve) => {
@@ -223,6 +230,9 @@ const select = (title, options) => new Promise((resolve) => {
 ```
 
 ### Form
+
+
+![form](https://github.com/minidonut/react-functional-modal/raw/master/docs/form.gif)
 
 ``` jsx
 const Form = () => {
@@ -262,6 +272,9 @@ const form = () => new Promise((resolve, reject) => {
 ```
 
 ### Step
+
+
+![step](https://github.com/minidonut/react-functional-modal/raw/master/docs/step.gif)
 
 ``` jsx
 const step = (title, contents, index = 0) => {
