@@ -119,7 +119,7 @@ export const hide = (key?: string, ...args: any[]) => {
       hideAndRemove(i);
     }
   }
-  if (i.option.onClose) {
+  if (i?.option.onClose) {
     // Call onClose callback
     i.option.onClose(...args);
   }

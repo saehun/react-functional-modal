@@ -116,7 +116,7 @@ export var hide = function (key) {
             hideAndRemove(i);
         }
     }
-    if (i.option.onClose) {
+    if (i === null || i === void 0 ? void 0 : i.option.onClose) {
         // Call onClose callback
         (_a = i.option).onClose.apply(_a, args);
     }
