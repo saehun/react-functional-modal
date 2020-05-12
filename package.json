@@ -5,7 +5,8 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint . --ext .js,.ts"
   },
   "devDependencies": {
     "@types/react": "^16.9.34",
