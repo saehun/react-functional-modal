@@ -353,7 +353,7 @@ Where is the React element given as first argument of `show` function mounted?<b
 The answer is **another tree**:<br>
 <img src="https://github.com/minidonut/react-functional-modal/raw/master/docs/how-it-works.png" alt="how it works" width="621" height="405" />
 
-As the function `show` called, it create HTML `div` element and append it as a child of document's body. New `ReactDOM.render` API called with the  HTML `div` element as a container, given react element wrapped by overlay as a root.
+As the function `show` called, it creates HTML `div` element and appends it as a child of document's body. New `ReactDOM.render` API called with the  HTML `div` element as a container, given react element wrapped by overlay as a root.
 
 When the function `hide` called, `ReactDOM.unmountComponentAtNode` and `document.body.removeChild` API detroy and clear the modal.
 
@@ -380,7 +380,7 @@ import { Provider, useStore } from "react-redux";
 ...
 ```
 
-2. Pass functions directly
+2. Pass functions directly (callback with closure)
 ``` jsx
 ...
 // somewhere in react component
